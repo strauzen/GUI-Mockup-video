@@ -14,9 +14,6 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
-
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -94,16 +91,15 @@
 
 <div class="row">
 	<div style="text-align:center"> 
-	  <video id="video1" width="420">
-		<source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-		<source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
-		Your browser does not support HTML5 video.
-	  </video>
-	  <br>
-	  <button type="button" class="btn btn-default navbar-btn" onclick="playPause()">Play/Pause</button> 
-	  <button type="button" class="btn btn-default navbar-btn" onclick="makeBig()">Big</button>
-	  <button type="button" class="btn btn-default navbar-btn" onclick="makeSmall()">Small</button>
-	  <button type="button" class="btn btn-default navbar-btn" onclick="makeNormal()">Normal</button>
+	  <button type="button" class="btn btn-default navbar-btn" onclick="backward()">
+		<span class="glyphicon glyphicon-backward"></span>
+	  </button> 
+	  <button id="playPauseButton" type="button" class="btn btn-default navbar-btn" onclick="playPause()">
+	    <span class="glyphicon glyphicon-play"></span>
+	  </button>
+	  <button type="button" class="btn btn-default navbar-btn" onclick="forward()">
+	    <span class="glyphicon glyphicon-forward"></span>
+	  </button>
 	</div> 
 </div>
 
@@ -112,36 +108,20 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-	<script> 
-		var myVideo=document.getElementById("video1"); 
-
-		$("#Open").click(function(){
-			  myVideo.play(); 
-		});
+	<script>
+		var isStatePause = true;
 		
-		function playPause()
-		{ 
-			if (myVideo.paused) 
-			  myVideo.play(); 
-			else 
-			  myVideo.pause(); 
-		} 
-
-		function makeBig()
-		{ 
-			myVideo.width=560; 
-		} 
-
-		function makeSmall()
-		{ 
-			myVideo.width=320; 
-		} 
-
-		function makeNormal()
-		{ 
-			myVideo.width=420; 
-		} 
-</script> 
+		function playPause(){
+		  if(isStatePause==true){
+		    isStatePause=false;
+			document.getElementById("playPauseButton").innerHTML="<span class=\"glyphicon glyphicon-pause\"></span>";
+		  }
+		  else{
+		  	isStatePause=true;
+			document.getElementById("playPauseButton").innerHTML="<span class=\"glyphicon glyphicon-play\"></span>";
+		  }
+		}
+	</script>
 
   </body>
 </html>
